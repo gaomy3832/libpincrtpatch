@@ -32,3 +32,13 @@ LIBS = -lc-dynamic
 
 -include makefile.inc
 
+INSTALL_DIR = $(strip $(PREFIX))/lib
+
+install:
+	cp $(TARGET) $(INSTALL_DIR)
+
+uninstall:
+	rm -f $(INSTALL_DIR)/$(TARGET)
+
+.PHONY: install uninstall
+
