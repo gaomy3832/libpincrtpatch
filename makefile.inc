@@ -29,9 +29,10 @@ SRC_DIRS ?= $(strip $(TOP_DIR))/src
 INC_DIRS ?= $(strip $(TOP_DIR))/include
 
 # User-defined flags.
-CFLAGS  ?=
-LDFLAGS ?=
-LIBS    ?=
+CFLAGS   ?=
+CXXFLAGS ?=
+LDFLAGS  ?=
+LIBS     ?=
 
 # Command line switches.
 D ?= 0  # debug mode?
