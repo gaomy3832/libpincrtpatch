@@ -11,7 +11,7 @@ endif
 
 CC = gcc
 SRC_DIRS = src
-TARGET = libpin3c_nonshared.so
+TARGET = libpin3c_missing.so
 
 SYS_INC_DIRS = $(addprefix $(PINPATH)/, \
 			   extras/stlport/include \
