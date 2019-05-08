@@ -11,7 +11,7 @@ endif
 
 CC = gcc
 SRC_DIRS = src
-TARGET = libpin3c_missing.so
+TARGET = libpin3c_missing.a
 
 SYS_INC_DIRS = $(addprefix $(PINPATH)/, \
 			   extras/stlport/include \
@@ -25,6 +25,7 @@ LIB_DIR = $(PINPATH)/intel64/runtime/pincrt
 CFLAGS = -g -O2 -D__PIN__=1 -DPIN_CRT=1 -DTARGET_IA32E -DTARGET_LINUX \
 		 -funwind-tables -fno-stack-protector \
 		 $(addprefix -isystem ,$(SYS_INC_DIRS))
+CFLAGS += -fPIC
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti \
 		   $(addprefix -isystem ,$(SYS_INC_DIRS))
 LDFLAGS = -nostdlib $(addprefix -L,$(LIB_DIR))
