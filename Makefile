@@ -36,6 +36,7 @@ LIBS = -lc-dynamic
 INSTALL_DIR = $(strip $(PREFIX))/lib
 
 install:
+	mkdir -p $(INSTALL_DIR)
 	cp $(TARGET) $(INSTALL_DIR)
 
 uninstall:
