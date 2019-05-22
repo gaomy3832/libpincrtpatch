@@ -1,9 +1,11 @@
 $(info Pin path is $(PINPATH))
 
-PREFIX = $(shell readlink -f ../..)
+TOP = $(shell readlink -f ..)
+
+PREFIX ?= $(shell readlink -f $(TOP)/..)
 $(info Install path is $(PREFIX))
 
-SPECS = $(strip $(PREFIX))/src/specs.pincrt
+SPECS ?= $(strip $(TOP))/gcc_scripts/specs.pincrt
 $(info GCC spec file is $(SPECS))
 ifeq ($(wildcard $(SPECS)),)
 $(error GCC spec file does not exist)
