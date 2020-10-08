@@ -27,6 +27,8 @@ TOP_DIR := $(realpath $(dir $(word $(words $(MAKEFILE_LIST)), $(MAKEFILE_LIST)))
 TARGET   ?= $(strip $(TOP_DIR))/a.out
 SRC_DIRS ?= $(strip $(TOP_DIR))/src
 INC_DIRS ?= $(strip $(TOP_DIR))/include
+# Whether to recursively discover src files.
+NO_RECURSIVE_SRC ?= 0
 
 # User-defined flags.
 CFLAGS   ?=
@@ -107,7 +109,11 @@ OBJ_EXT  := .o
 DEP_EXT  := .d
 
 # Directories and files.
+ifeq ($(NO_RECURSIVE_SRC),0)
 DIRS := $(foreach DIR,$(SRC_DIRS),$(shell find $(DIR) -type d -print))  # recursively find all subdirectories in src dir
+else  # $(NO_RECURSIVE_SRC)
+DIRS := $(SRC_DIRS)
+endif  # $(NO_RECURSIVE_SRC)
 SRCS := $(foreach EXT,$(SRC_EXTS),$(foreach DIR,$(DIRS),$(wildcard $(DIR)/*$(EXT))))  # find all src at each dir with each ext
 OBJS := $(filter %$(OBJ_EXT),$(foreach EXT,$(SRC_EXTS),$(SRCS:$(EXT)=$(OBJ_EXT))))  # replace src ext with obj ext
 DEPS := $(OBJS:$(OBJ_EXT)=$(DEP_EXT))  # replace obj ext with dep ext
