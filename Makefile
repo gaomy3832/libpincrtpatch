@@ -14,7 +14,7 @@ endif
 CC = gcc
 SRC_DIRS = src
 NO_RECURSIVE_SRC = 1
-TARGET = libpin3c_missing.a
+TARGET = libpin3c_missing.so
 
 SYS_INC_DIRS = $(addprefix $(PINPATH)/, \
 			   extras/stlport/include \
