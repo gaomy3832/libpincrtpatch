@@ -7,7 +7,7 @@ static char* _tz_getenv(const char* name) {
         // Use PIN_CRT_TZDATA as TZ to be consistent with other PinCRT routines.
         char* pin_crt_tzdata = getenv("PIN_CRT_TZDATA");
         if (!pin_crt_tzdata) {
-            printf("PIN_CRT_TZDATA not set!\n");
+            fprintf(stderr, "PIN_CRT_TZDATA not set!\n");
         }
         return pin_crt_tzdata;
     }
