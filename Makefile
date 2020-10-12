@@ -27,11 +27,13 @@ LIB_DIR = $(PINPATH)/intel64/runtime/pincrt
 
 CFLAGS = -g -O2 -D__PIN__=1 -DPIN_CRT=1 -DTARGET_IA32E -DTARGET_LINUX \
 		 -funwind-tables -fno-stack-protector \
+		 -fabi-version=2 \
 		 $(addprefix -isystem ,$(SYS_INC_DIRS))
 CFLAGS += -fPIC
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti \
 		   $(addprefix -isystem ,$(SYS_INC_DIRS))
 LDFLAGS = -nostdlib $(addprefix -L,$(LIB_DIR))
+LDFLAGS += -Wl,--hash-style=sysv
 LIBS = -lc-dynamic
 
 -include makefile.inc
