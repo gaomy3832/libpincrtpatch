@@ -24,4 +24,6 @@ Fixed buggy references
   [Github](https://github.com/eggert/tz/commit/4c8309661d861d838e42b2277e0d43b16d62e061)
 - `strtof` (v3.13 - ): A value with fractional part equal to 1/2^n (e.g., 3.5,
   4.125) is converted to `inf`. This also affects `scanf`, etc..
+- `system` (v3.0 - ): Not implemented, always return -1. Use the implementation
+  from [tlpi](https://man7.org/tlpi/code/online/dist/procexec/system.c.html).
 
