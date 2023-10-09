@@ -30,7 +30,7 @@ uninstall:
 .PHONY: install uninstall
 
 # additional flags for tz
-src/mktime.o: CFLAGS += -Wno-address -Wno-unused-parameter
+src/mktime.o: CFLAGS += -Wno-address -Wno-unused-parameter -DHAVE_GETTEXT=0
 
 LDFLAGS += -Wno-maybe-uninitialized
 
