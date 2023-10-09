@@ -11,30 +11,10 @@ ifeq ($(wildcard $(SPECS)),)
 $(error GCC spec file does not exist)
 endif
 
-CC = gcc
+CC = gcc -specs=$(SPECS) -nostdlib
 SRC_DIRS = src
 NO_RECURSIVE_SRC = 1
 TARGET = libpincrtpatch.so
-
-SYS_INC_DIRS = $(addprefix $(PINPATH)/, \
-			   extras/stlport/include \
-			   extras/libstdc++/include \
-			   extras/crt/include \
-			   extras/crt/include/arch-x86_64 \
-			   extras/crt/include/kernel/uapi \
-			   extras/crt/include/kernel/uapi/asm-x86)
-LIB_DIR = $(PINPATH)/intel64/runtime/pincrt
-
-CFLAGS = -g -O2 -D__PIN__=1 -DPIN_CRT=1 -DTARGET_IA32E -DTARGET_LINUX \
-		 -funwind-tables -fno-stack-protector \
-		 -fabi-version=2 \
-		 $(addprefix -isystem ,$(SYS_INC_DIRS))
-CFLAGS += -fPIC
-CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti \
-		   $(addprefix -isystem ,$(SYS_INC_DIRS))
-LDFLAGS = -nostdlib $(addprefix -L,$(LIB_DIR))
-LDFLAGS += -Wl,--hash-style=sysv
-LIBS = -lc-dynamic
 
 -include makefile.inc
 
